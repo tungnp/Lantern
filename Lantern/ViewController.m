@@ -7,7 +7,8 @@
 //
 
 #import "ViewController.h"
-
+#import "LanternView.h"
+#import <QuartzCore/QuartzCore.h>
 @interface ViewController ()
 
 @end
@@ -18,6 +19,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    LanternView* lanternView = [[LanternView alloc]init];
+    [self.view addSubview:lanternView];
+    
 }
 
 - (void)didReceiveMemoryWarning
