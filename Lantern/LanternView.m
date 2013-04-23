@@ -48,6 +48,7 @@
         _distance = fabsf(_RightOffSet.x - _LeftOffset.x);
         
         _scrollView.contentOffset = CGPointMake(_distance, 0);
+        NSLog(@"%f %f %f",_LeftOffset.x, _RightOffSet.x,_distance);
     }
     return self;
 }
@@ -108,9 +109,11 @@
     CGPoint currentOffset = scrollView.contentOffset;
     if (fabs(currentOffset.x - _LeftOffset.x) > _distance) {
         scrollView.contentOffset = CGPointMake(currentOffset.x - _distance, currentOffset.y);
+        return;
     }
     else if (fabs(currentOffset.x - _RightOffSet.x) > _distance){
         scrollView.contentOffset = CGPointMake(currentOffset.x + _distance, currentOffset.y);
+        return;
     }
     int index = ((int)(currentOffset.x - IMAGE_DISTANCE)) / IMAGE_WIDTH;
     float deviation = ((int)(currentOffset.x-IMAGE_DISTANCE)) % IMAGE_WIDTH;
@@ -127,6 +130,7 @@
         [self setAnchorPoint:CGPointMake(0, 0) forView:imageViewSecond];
     }
     imageViewSecond.layer.transform = CATransform3DMakeRotation(M_PI_2 - angle, 0, -1, 0);
+    NSLog(@"%f",currentOffset.x);
     
 }
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
